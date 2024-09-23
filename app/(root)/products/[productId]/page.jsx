@@ -323,7 +323,7 @@ const ProductDetailsPage = () => {
             <div>
               <div className="flex flex-col sm:flex-row gap-4 sm:gap-20 justify-center py-5 text-[12px] sm:text-[15px]">
                 <div className="flex flex-col items-center gap-2 max-w-[400px]">
-                  <h3>Довжина тіла "A"</h3>
+                  <h3>Довжина тіла &quot;A&quot;</h3>
                   <Image
                     src="/catalogue-detail-item/back-length.jpeg"
                     alt="Заміри спини"
@@ -331,7 +331,6 @@ const ProductDetailsPage = () => {
                     height={200}
                     objectFit={"cover"}
                   />
-                  <img />
                   <p>&Xi;</p>
                   <p className="max-w-[250px] text-center">
                     Переконайтесь, що ваш собака стоїть прямо. Виміряйте довжину
@@ -341,7 +340,7 @@ const ProductDetailsPage = () => {
                 </div>
 
                 <div className="flex flex-col items-center gap-2 max-w-[400px]">
-                  <h3>Об&apos;єм грудей "B"</h3>
+                  <h3>Об&apos;єм грудей &quot;B&quot;</h3>
                   <Image
                     src="/catalogue-detail-item/chest-meisure.jpeg"
                     alt="Заміри грудної клітки"
