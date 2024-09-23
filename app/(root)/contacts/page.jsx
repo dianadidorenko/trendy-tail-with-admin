@@ -60,7 +60,7 @@ const ContactsPage = () => {
                   className="mx-auto mb-4 w-16 h-16"
                 />
                 <p className="text-lg font-semibold text-gray-100 dark:text-gray-600">
-                  Для швидкого зв'язку з нами
+                  Для швидкого зв&apos;язку з нами
                 </p>
                 <a
                   href="tel:+380974379424"
@@ -106,7 +106,7 @@ const ContactsPage = () => {
           >
             <div className="form-left-part">
               <div className="input-group">
-                <label>Ім'я</label>
+                <label>Ім&apos;я</label>
                 <input
                   type="text"
                   name="clientName"

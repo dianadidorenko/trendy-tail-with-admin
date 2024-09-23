@@ -43,7 +43,7 @@ const ThankYouPageContent = () => {
             Клієнт:
           </h2>
           <p className="border-b-gray-500/40 border-b">
-            Ім'я і прізвище:{" "}
+            Ім&apos;я і прізвище:{" "}
             {orderDetails.clientInfo.split(" ")[2].replace(",", "")}{" "}
             {orderDetails.clientInfo.split(" ")[3].replace(",", "")}
           </p>

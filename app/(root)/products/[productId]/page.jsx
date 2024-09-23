@@ -183,7 +183,7 @@ const ProductDetailsPage = () => {
                 </div>
 
                 <div className="flex flex-col items-center gap-2 max-w-[400px]">
-                  <h3>Об'єм грудей "B"</h3>
+                  <h3>Об&apos;єм грудей "B"</h3>
                   <Image
                     src="/catalogue-detail-item/chest-meisure.jpeg"
                     alt="Заміри грудної клітки"
@@ -234,8 +234,8 @@ const ProductDetailsPage = () => {
                     <td>28-32</td>
                     <td>1.5-2.5</td>
                     <td className="text-[12px] sm:text-[15px]">
-                      Мініатюрний йоркширський тер'єр, чихуахуа, мініатюрний
-                      пінчер, той-тер'єр
+                      Мініатюрний йоркширський тер&apos;єр, чихуахуа,
+                      мініатюрний пінчер, той-тер&apos;єр
                     </td>
                   </tr>
                   <tr className="text-[12px] sm:text-[15px]">
@@ -251,8 +251,8 @@ const ProductDetailsPage = () => {
                     <td>32-39</td>
                     <td>2.0-3.0</td>
                     <td className="text-[12px] sm:text-[15px]">
-                      Йоркширський тер'єр, чихуахуа, мініатюрний пінчер,
-                      той-тер'єр, померанський шпіц, мальтезе, мальтіпу
+                      Йоркширський тер&apos;єр, чихуахуа, мініатюрний пінчер,
+                      той-тер&apos;єр, померанський шпіц, мальтезе, мальтіпу
                     </td>
                   </tr>
                   <tr className="text-[12px] sm:text-[15px]">
@@ -261,8 +261,8 @@ const ProductDetailsPage = () => {
                     <td>37-44</td>
                     <td>2.5-3.5</td>
                     <td className="text-[12px] sm:text-[15px]">
-                      Йоркширський тер'єр, чихуахуа, мініатюрний пінчер,
-                      той-тер'єр, померанський шпіц, мальтезе, мальтіпу
+                      Йоркширський тер&apos;єр, чихуахуа, мініатюрний пінчер,
+                      той-тер&apos;єр, померанський шпіц, мальтезе, мальтіпу
                     </td>
                   </tr>
                   <tr className="text-[12px] sm:text-[15px]">
@@ -296,7 +296,7 @@ const ProductDetailsPage = () => {
                     <td>44-52</td>
                     <td>4.0-6.0</td>
                     <td className="text-[12px] sm:text-[15px]">
-                      Пінчер, бішон фризе, джек-рассел-тер'єр
+                      Пінчер, бішон фризе, джек-рассел-тер&apos;єр
                     </td>
                   </tr>
                   <tr className="text-[12px] sm:text-[15px]">
@@ -331,7 +331,7 @@ const ProductDetailsPage = () => {
                     <td>44-55</td>
                     <td>4.0-7.0</td>
                     <td className="text-[12px] sm:text-[15px]">
-                      Джек-рассел-тер'єр
+                      Джек-рассел-тер&apos;єр
                     </td>
                   </tr>
                   <tr className="text-[12px] sm:text-[15px]">
@@ -350,8 +350,8 @@ const ProductDetailsPage = () => {
                     <td>55-65</td>
                     <td>10.0-15.0</td>
                     <td className="text-[12px] sm:text-[15px]">
-                      Шнауцер, кокер-спаніель, фокстер'єр, скотчтер'єр,
-                      цвергшнауцер, англійський спанієль, міні бультер'єр
+                      Шнауцер, кокер-спаніель, фокстер&apos;єр, скотчтер&apos;єр,
+                      цвергшнауцер, англійський спанієль, міні бультер&apos;єр
                     </td>
                   </tr>
                   <tr className="text-[12px] sm:text-[15px]">
@@ -360,7 +360,7 @@ const ProductDetailsPage = () => {
                     <td>60-72</td>
                     <td>20.0-25.0</td>
                     <td className="text-[12px] sm:text-[15px]">
-                      Самоїд, бультер'єр
+                      Самоїд, бультер&apos;єр
                     </td>
                   </tr>
                   <tr className="text-[12px] sm:text-[15px]">
@@ -369,7 +369,7 @@ const ProductDetailsPage = () => {
                     <td>68-80</td>
                     <td>25.0-30.0</td>
                     <td className="text-[12px] sm:text-[15px]">
-                      Самоїд великий, стаффорд, бультер'єр
+                      Самоїд великий, стаффорд, бультер&apos;єр
                     </td>
                   </tr>
                   <tr className="text-[12px] sm:text-[15px]">

@@ -54,7 +54,7 @@ const MainForm = () => {
     <form className="flex flex-col gap-y-2" onSubmit={handleSubmit}>
       <input type="hidden" name="formType" value="form1" />
 
-      <label className="xs:text-sm">Ім'я</label>
+      <label className="xs:text-sm">Ім&apos;я</label>
       <input
         type="text"
         placeholder="Trendy"
