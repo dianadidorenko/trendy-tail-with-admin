@@ -8,16 +8,174 @@ import PagesNav from "@/components/common/PagesNav";
 import Gallery from "@/components/layout/product-details/Gallery";
 import ProductDetails from "@/components/layout/product-details/ProductDetails";
 import { fadeIn } from "@/lib/variants";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Loader from "@/components/elements/Loader";
 import { fetchItems } from "@/lib/fetchItems";
+
+const sizeData = [
+  {
+    size: "XXS",
+    length: "20-22",
+    chest: "25-29",
+    weight: "до 1.5",
+    breeds: "Цуценята дрібних порід",
+  },
+  {
+    size: "XS",
+    length: "23-25",
+    chest: "28-32",
+    weight: "1.5-2.5",
+    breeds: "Мініатюрний йоркширський тер'єр, чихуахуа, мініатюрний пінчер",
+  },
+  {
+    size: "XS такса",
+    length: "33-35",
+    chest: "42-52",
+    weight: "6.0-8.0",
+    breeds: "Такса",
+  },
+  {
+    size: "XS2",
+    length: "26-28",
+    chest: "32-39",
+    weight: "2.0-3.0",
+    breeds:
+      "Йоркширський тер'єр, чихуахуа, мініатюрний пінчер, той-тер'єр, померанський шпіц, мальтезе, мальтіпу",
+  },
+  {
+    size: "S",
+    length: "27-29",
+    chest: "37-44",
+    weight: "2.5-3.5",
+    breeds:
+      "Йоркширський тер'єр, чихуахуа, мініатюрний пінчер, той-тер'єр, померанський шпіц, мальтезе, мальтіпу",
+  },
+  {
+    size: "S такса",
+    length: "38-40",
+    chest: "44-54",
+    weight: "8.0-10.0",
+    breeds: "Такса",
+  },
+  {
+    size: "S2",
+    length: "28-30",
+    chest: "50-57",
+    weight: "7.0-9.0",
+    breeds: "Мопс, французький бульдог",
+  },
+  {
+    size: "S2 такса",
+    length: "38-40",
+    chest: "50-62",
+    weight: "12.0-15.0",
+    breeds: "Такса, пекінес, невеликі коргі",
+  },
+  {
+    size: "SM",
+    length: "28-30",
+    chest: "44-52",
+    weight: "4.0-6.0",
+    breeds: "Пінчер, бішон фризе, джек-рассел-тер'єр",
+  },
+  {
+    size: "M",
+    length: "34-36",
+    chest: "40-48",
+    weight: "3.0-6.0",
+    breeds:
+      "Мальтезе, ши-тцу, той-пудель, карликовий пудель, бішон фризе, кавалер-кінг-чарльз-спанієль",
+  },
+  {
+    size: "M такса",
+    length: "43-45",
+    chest: "50-62",
+    weight: "10.0-13.0",
+    breeds: "Такса",
+  },
+  {
+    size: "M2",
+    length: "32-34",
+    chest: "55-65",
+    weight: "10.0-14.0",
+    breeds: "Мопс, французький бульдог",
+  },
+  {
+    size: "ML",
+    length: "33-35",
+    chest: "44-55",
+    weight: "4.0-7.0",
+    breeds: "Джек-рассел-тер'єр",
+  },
+  {
+    size: "L",
+    length: "38-40",
+    chest: "47-56",
+    weight: "6.0-13.0",
+    breeds:
+      "Китайська чубата, ши-тцу, той-пудель, пудель, шнауцер, японський хін, кокер-спанієль",
+  },
+  {
+    size: "XL",
+    length: "41-43",
+    chest: "55-65",
+    weight: "10.0-15.0",
+    breeds:
+      "Шнауцер, кокер-спаніель, фокстер'єр, скотчтер'єр, цвергшнауцер, англійський спаніель, міні бультер'єр",
+  },
+  {
+    size: "2XL",
+    length: "44-46",
+    chest: "60-72",
+    weight: "20.0-25.0",
+    breeds: "Самоїд, бультер'єр",
+  },
+  {
+    size: "3XL",
+    length: "47-49",
+    chest: "68-80",
+    weight: "25.0-30.0",
+    breeds: "Самоїд великий, стаффорд, бультер'єр",
+  },
+  {
+    size: "4XL",
+    length: "49-51",
+    chest: "72-85",
+    weight: "30.0-35.0",
+    breeds: "Стаффорд, хаскі",
+  },
+  {
+    size: "5XL",
+    length: "55-57",
+    chest: "78-91",
+    weight: "35.0-45.0",
+    breeds: "Ретрівер, лабрадор, боксер",
+  },
+  {
+    size: "6XL",
+    length: "61-63",
+    chest: "82-95",
+    weight: "45.0-50.0",
+    breeds: "Вівчарка, ротвейлер, доберман",
+  },
+  {
+    size: "7XL",
+    length: "70-72",
+    chest: "86-99",
+    weight: "60.0-66.0",
+    breeds: "Кане-корсо",
+  },
+];
 
 const ProductDetailsPage = () => {
   const path = useParams();
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const item = items.find((item) => item.urlName === path.productId);
+  const item = useMemo(
+    () => items.find((item) => item.urlName === path.productId),
+    [items, path.productId]
+  );
 
   useEffect(() => {
     const getItems = async () => {
@@ -201,7 +359,7 @@ const ProductDetailsPage = () => {
                 </div>
               </div>
               <table>
-                <tbody>
+                <thead>
                   <tr className="bg-tableTitle">
                     <th className="font-bold text-[12px] sm:text-[15px]">
                       Розмір
@@ -219,193 +377,17 @@ const ProductDetailsPage = () => {
                       Рекомендовані породи
                     </th>
                   </tr>
-                  <tr className="text-[12px] sm:text-[15px]">
-                    <td>XXS</td>
-                    <td>20-22</td>
-                    <td>25-29</td>
-                    <td>до 1.5</td>
-                    <td className="text-[12px] sm:text-[15px]">
-                      Цуценята дрібних порід
-                    </td>
-                  </tr>
-                  <tr className="text-[12px] sm:text-[15px]">
-                    <td>XS</td>
-                    <td>23-25</td>
-                    <td>28-32</td>
-                    <td>1.5-2.5</td>
-                    <td className="text-[12px] sm:text-[15px]">
-                      Мініатюрний йоркширський тер&apos;єр, чихуахуа,
-                      мініатюрний пінчер, той-тер&apos;єр
-                    </td>
-                  </tr>
-                  <tr className="text-[12px] sm:text-[15px]">
-                    <td>XS такса</td>
-                    <td>33-35</td>
-                    <td>42-52</td>
-                    <td>6.0-8.0</td>
-                    <td>Такса</td>
-                  </tr>
-                  <tr className="text-[12px] sm:text-[15px]">
-                    <td>XS2</td>
-                    <td>26-28</td>
-                    <td>32-39</td>
-                    <td>2.0-3.0</td>
-                    <td className="text-[12px] sm:text-[15px]">
-                      Йоркширський тер&apos;єр, чихуахуа, мініатюрний пінчер,
-                      той-тер&apos;єр, померанський шпіц, мальтезе, мальтіпу
-                    </td>
-                  </tr>
-                  <tr className="text-[12px] sm:text-[15px]">
-                    <td>S</td>
-                    <td>27-29</td>
-                    <td>37-44</td>
-                    <td>2.5-3.5</td>
-                    <td className="text-[12px] sm:text-[15px]">
-                      Йоркширський тер&apos;єр, чихуахуа, мініатюрний пінчер,
-                      той-тер&apos;єр, померанський шпіц, мальтезе, мальтіпу
-                    </td>
-                  </tr>
-                  <tr className="text-[12px] sm:text-[15px]">
-                    <td>S такса</td>
-                    <td>38-40</td>
-                    <td>44-54</td>
-                    <td>8.0-10.0</td>
-                    <td>Такса</td>
-                  </tr>
-                  <tr className="text-[12px] sm:text-[15px]">
-                    <td>S2</td>
-                    <td>28-30</td>
-                    <td>50-57</td>
-                    <td>7.0-9.0</td>
-                    <td className="text-[12px] sm:text-[15px]">
-                      Мопс, французький бульдог
-                    </td>
-                  </tr>
-                  <tr className="text-[12px] sm:text-[15px]">
-                    <td>S2 такса</td>
-                    <td>38-40</td>
-                    <td>50-62</td>
-                    <td>12.0-15.0</td>
-                    <td className="text-[12px] sm:text-[15px]">
-                      Такса, пекінес, невеликі коргі
-                    </td>
-                  </tr>
-                  <tr className="text-[12px] sm:text-[15px]">
-                    <td>SM</td>
-                    <td>28-30</td>
-                    <td>44-52</td>
-                    <td>4.0-6.0</td>
-                    <td className="text-[12px] sm:text-[15px]">
-                      Пінчер, бішон фризе, джек-рассел-тер&apos;єр
-                    </td>
-                  </tr>
-                  <tr className="text-[12px] sm:text-[15px]">
-                    <td>M</td>
-                    <td>34-36</td>
-                    <td>40-48</td>
-                    <td>3.0-6.0</td>
-                    <td className="text-[12px] sm:text-[15px]">
-                      Мальтезе, ши-тцу, той- пудель, карликовий пудель (собаки
-                      середніх порід), бішон фризе, кавалер-кінг-чарльз-спанієль
-                    </td>
-                  </tr>
-                  <tr className="text-[12px] sm:text-[15px]">
-                    <td>M такса</td>
-                    <td>43-45</td>
-                    <td>50-62</td>
-                    <td>10.0-13.0</td>
-                    <td className="text-[12px] sm:text-[15px]">Такса</td>
-                  </tr>
-                  <tr className="text-[12px] sm:text-[15px]">
-                    <td>M2</td>
-                    <td>32-34</td>
-                    <td>55-65</td>
-                    <td>10.0-14.0</td>
-                    <td className="text-[12px] sm:text-[15px]">
-                      Мопс, французький бульдог
-                    </td>
-                  </tr>
-                  <tr className="text-[12px] sm:text-[15px]">
-                    <td>ML</td>
-                    <td>33-35</td>
-                    <td>44-55</td>
-                    <td>4.0-7.0</td>
-                    <td className="text-[12px] sm:text-[15px]">
-                      Джек-рассел-тер&apos;єр
-                    </td>
-                  </tr>
-                  <tr className="text-[12px] sm:text-[15px]">
-                    <td>L</td>
-                    <td>38-40</td>
-                    <td>47-56</td>
-                    <td>6.0-13.0</td>
-                    <td className="text-[12px] sm:text-[15px]">
-                      Китайська чубата, ши-тцу, той- пудель, пудель, шнауцер,
-                      японський хін, кокер-спанієль
-                    </td>
-                  </tr>
-                  <tr className="text-[12px] sm:text-[15px]">
-                    <td>XL</td>
-                    <td>41-43</td>
-                    <td>55-65</td>
-                    <td>10.0-15.0</td>
-                    <td className="text-[12px] sm:text-[15px]">
-                      Шнауцер, кокер-спаніель, фокстер&apos;єр, скотчтер&apos;єр,
-                      цвергшнауцер, англійський спанієль, міні бультер&apos;єр
-                    </td>
-                  </tr>
-                  <tr className="text-[12px] sm:text-[15px]">
-                    <td>2XL</td>
-                    <td>44-46</td>
-                    <td>60-72</td>
-                    <td>20.0-25.0</td>
-                    <td className="text-[12px] sm:text-[15px]">
-                      Самоїд, бультер&apos;єр
-                    </td>
-                  </tr>
-                  <tr className="text-[12px] sm:text-[15px]">
-                    <td>3XL</td>
-                    <td>47-49</td>
-                    <td>68-80</td>
-                    <td>25.0-30.0</td>
-                    <td className="text-[12px] sm:text-[15px]">
-                      Самоїд великий, стаффорд, бультер&apos;єр
-                    </td>
-                  </tr>
-                  <tr className="text-[12px] sm:text-[15px]">
-                    <td>4XL</td>
-                    <td>49-51</td>
-                    <td>72-85</td>
-                    <td>30.0-35.0</td>
-                    <td className="text-[12px] sm:text-[15px]">
-                      Стаффорд, хаскі
-                    </td>
-                  </tr>
-                  <tr className="text-[12px] sm:text-[15px]">
-                    <td>5XL</td>
-                    <td>55-57</td>
-                    <td>78-91</td>
-                    <td>35.0-45.0</td>
-                    <td className="text-[12px] sm:text-[15px]">
-                      Ретрівер, лабрадор, боксер
-                    </td>
-                  </tr>
-                  <tr className="text-[12px] sm:text-[15px]">
-                    <td>6XL</td>
-                    <td>61-63</td>
-                    <td>82-95</td>
-                    <td>45.0-50.0</td>
-                    <td className="text-[12px] sm:text-[15px]">
-                      Вівчарка, ротвейлер, доберман
-                    </td>
-                  </tr>
-                  <tr className="text-[12px] sm:text-[15px]">
-                    <td>7XL</td>
-                    <td>70-72</td>
-                    <td>86-99</td>
-                    <td>60.0-66.0</td>
-                    <td className="text-[12px] sm:text-[15px]">Кане-корсо</td>
-                  </tr>
+                </thead>
+                <tbody>
+                  {sizeData.map((data, index) => (
+                    <tr key={index} className="text-[12px] sm:text-[15px]">
+                      <td>{data.size}</td>
+                      <td>{data.length}</td>
+                      <td>{data.chest}</td>
+                      <td>{data.weight}</td>
+                      <td>{data.breeds}</td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>

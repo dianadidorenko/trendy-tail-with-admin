@@ -4,7 +4,7 @@ import UserForm from "@/components/layout/profile/UserForm";
 import Link from "next/link";
 import React, { useState, useEffect } from "react";
 
-export default function page() {
+export default function ProfilePage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
 
@@ -51,7 +51,7 @@ export default function page() {
         </Link>
       )}
 
-      <UserForm  />
+      <UserForm />
     </div>
   );
 }

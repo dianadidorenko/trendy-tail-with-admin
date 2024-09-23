@@ -20,8 +20,11 @@ const CatalogNav = ({ items }) => {
         viewport={{ once: true, amount: 0.2 }}
       >
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {items.map((item) => (
-            <div className="flex items-center justify-center hover:animate-swipe transition-all duration-300">
+          {items.map((item, index) => (
+            <div
+              key={index}
+              className="flex items-center justify-center hover:animate-swipe transition-all duration-300"
+            >
               <Link
                 href={`/${item.category}?category=${item.categoryShow}`}
                 className="relative"
