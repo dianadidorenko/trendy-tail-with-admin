@@ -365,10 +365,10 @@ const ProductDetailsPage = () => {
                       Розмір
                     </th>
                     <th className="font-bold text-[12px] sm:text-[15px]">
-                      "A" довжина спини (см)
+                      &quot;A&quot; довжина спини (см)
                     </th>
                     <th className="font-bold text-[12px] sm:text-[15px]">
-                      “В” об’єм грудей (см)
+                      &quot;В&quot; об’єм грудей (см)
                     </th>
                     <th className="font-bold text-[12px] sm:text-[15px]">
                       Вага (кг)
