@@ -1,4 +1,3 @@
-// components/CookieConsent.js
 import { useState } from "react";
 
 const CookieConsent = () => {
@@ -18,7 +17,10 @@ const CookieConsent = () => {
   }
 
   return (
-    <div style={styles.container}>
+    <div
+      style={styles.container}
+      className="bg-white dark:bg-slate-400 dark:text-white"
+    >
       <p className="pb-2">
         Цей сайт використовує кукі для покращення вашого досвіду. <br />{" "}
         Продовжуючи використовувати цей сайт, ви погоджуєтесь з нашою політикою
@@ -48,7 +50,6 @@ const styles = {
     bottom: 0,
     left: 0,
     right: 0,
-    backgroundColor: "#fff",
     borderTop: "1px solid #ccc",
     padding: "10px",
     textAlign: "center",

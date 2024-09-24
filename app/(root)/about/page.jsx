@@ -7,8 +7,18 @@ import SectionHeaders from "@/components/common/SectionHeaders";
 import AboutUs from "@/components/layout/main-page/AboutUs";
 import { fadeIn } from "@/lib/variants";
 import PagesNav from "@/components/common/PagesNav";
+import { useEffect, useState } from "react";
 
 const AboutUsPage = () => {
+  const [isClient, setIsClient] = useState(false);
+
+  // Проверяем, что мы на клиенте
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) return null;
+
   return (
     <section className="container mx-auto">
       <PagesNav />
@@ -38,14 +48,7 @@ const AboutUsPage = () => {
           viewport={{ once: true, amount: 0.2 }}
         >
           <em>Мета та місія</em> продажу одягу для собак – надати модні та
-          функціональні варіанти одягу для наших пухнастих друзів. У
-          зв&apos;язку з зростаючою тенденцією володіння домашніми тваринами та
-          бажанням ставитися до наших вихованців як до членів сім&apos;ї, на
-          ринку зростає попит на одяг для собак. Наша місія полягає в тому, щоб
-          задовольнити цю потребу, пропонуючи широкий асортимент стильного та
-          добре продуманого одягу, який не тільки покращує зовнішній вигляд
-          собак, але й забезпечує комфорт та захист. зовнішній вигляд собак, але
-          й забезпечує комфорт та захист.
+          функціональні варіанти одягу для наших пухнастих друзів...
         </motion.p>
         <motion.p
           variants={fadeIn("up", 0.6)}

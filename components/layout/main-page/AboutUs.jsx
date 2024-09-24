@@ -17,11 +17,18 @@ const AboutUs = () => {
       setIsMobile(window.innerWidth < 768);
     };
 
-    window.addEventListener("resize", handleResize);
+    if (typeof window !== "undefined") {
+      // Проверяем наличие объекта window
+      handleResize();
+      window.addEventListener("resize", handleResize);
+    }
 
-    return () => window.removeEventListener("resize", handleResize);
+    return () => {
+      if (typeof window !== "undefined") {
+        window.removeEventListener("resize", handleResize);
+      }
+    };
   }, []);
-
 
   return (
     <section>
