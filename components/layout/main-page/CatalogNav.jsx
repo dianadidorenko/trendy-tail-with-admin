@@ -8,6 +8,10 @@ import SectionHeaders from "@/components/common/SectionHeaders";
 import { fadeIn } from "@/lib/variants";
 
 const CatalogNav = ({ items }) => {
+  const uniqueCategories = Array.from(
+    new Set(items.map((item) => item.categoryShow))
+  );
+
   return (
     <section>
       <SectionHeaders mainHeader={"Каталог"} />
@@ -20,7 +24,7 @@ const CatalogNav = ({ items }) => {
         viewport={{ once: true, amount: 0.2 }}
       >
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {items.map((item, index) => (
+          {uniqueCategories.map((item, index) => (
             <div
               key={index}
               className="flex items-center justify-center hover:animate-swipe transition-all duration-300"

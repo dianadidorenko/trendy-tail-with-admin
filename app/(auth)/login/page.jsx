@@ -37,11 +37,11 @@ function Login() {
     setCredentials({ ...credentials, [e.target.name]: e.target.value });
   };
   return (
-    <div className="flex justify-center items-center h-[100vh] bg-cyan-100">
+    <div className="flex justify-center items-center h-[100vh] bg-[#002255]">
       <div className="w-full max-w-lg">
         <form
           onSubmit={handleSubmit}
-          className="bg-gray-100 dark:bg-gray-900 dark:text-gray-100 border-gradient rounded-lg shadow-2xl px-8 pt-6 pb-8 mb-4"
+          className="bg-gray-200 dark:bg-gray-900 dark:text-gray-100 border-gradient rounded-lg shadow-2xl px-8 pt-6 pb-8 mb-4"
         >
           <div className="mb-4">
             <label
@@ -80,12 +80,12 @@ function Login() {
           <div className="flex items-center justify-between"></div>
           <button
             type="submit"
-            className="border text-gray-900 dark:text-gray-100 font-bold dark:border-gray-400 border-gray-900 rounded mr-2 p-2 hover:bg-gradient-to-r from-indigo-700 via-violet-700 to-cyan-950 duration-300 hover:text-gray-100"
+            className="transition-all border text-gray-900 dark:text-gray-100 font-bold dark:border-gray-400 border-gray-900 rounded mr-2 p-2 hover:bg-gradient-to-r from-indigo-700 via-violet-700 to-cyan-950 duration-300 hover:text-gray-100"
           >
             Log in
           </button>
           <Link href={"/register"} style={{ all: "unset" }}>
-            <button className="border text-gray-900 dark:text-gray-100 font-bold dark:border-gray-400 border-gray-900 rounded mr-2 p-2 hover:bg-gradient-to-r from-indigo-700 via-violet-700 to-cyan-950 duration-300 hover:text-gray-100">
+            <button className="transition-all border text-gray-900 dark:text-gray-100 font-bold dark:border-gray-400 border-gray-900 rounded mr-2 p-2 hover:bg-gradient-to-r from-indigo-700 via-violet-700 to-cyan-950 duration-300 hover:text-gray-100">
               New User?
             </button>
           </Link>

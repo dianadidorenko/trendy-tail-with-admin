@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import "@/styles/globals.css";
+
+import { useEffect, useState } from "react";
 
 import Loader from "@/components/elements/Loader";
 import CookieConsent from "@/components/CookieConsent";

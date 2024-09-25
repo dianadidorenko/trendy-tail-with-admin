@@ -1,114 +1,154 @@
-"use client";
-
-import Image from "next/image";
+import Loader from "@/components/elements/Loader";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import toast from "react-hot-toast";
 
-export default function UserForm({ user }) {
+export default function UserForm({ email }) {
   const router = useRouter();
 
-  const [name, setName] = useState(user?.firstName || "");
-  const [surname, setSurname] = useState(user?.lastName || "");
+  const [name, setName] = useState("");
+  const [surname, setSurname] = useState("");
   const [phone, setPhone] = useState("");
   const [city, setCity] = useState("");
   const [country, setCountry] = useState("");
 
-  const email = user?.emailAddresses[0].emailAddress;
+  const [loading, setLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+
+  useEffect(() => {
+    const fetchUserData = async () => {
+      const response = await fetch(`/api/profile/`, {
+        method: "GET",
+        headers: {
+          userEmail: email,
+        },
+      });
+      const data = await response.json();
+
+      if (data.success) {
+        const { name, surname, phone, city, country } = data.user;
+        setName(name);
+        setSurname(surname);
+        setPhone(phone);
+        setCity(city);
+        setCountry(country);
+      } else {
+        toast.error("Не удалось загрузить данные пользователя");
+      }
+      setLoading(false);
+    };
+
+    if (email) {
+      fetchUserData();
+    }
+  }, [email]);
+
+  const handleSubmit = async (ev) => {
+    ev.preventDefault();
+    setIsLoading(true);
+
+    const response = await fetch(`/api/profile`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ email, name, surname, phone, city, country }),
+    });
+
+    const data = await response.json();
+
+    setIsLoading(false);
+
+    if (data.success) {
+      setName(data.user.name);
+      setSurname(data.user.surname);
+      setPhone(data.user.phone);
+      setCity(data.user.city);
+      setCountry(data.user.country);
+
+      toast.success("Дані оновлені");
+      router.refresh();
+    } else {
+      toast.error("Дані не оновлені");
+      console.log(`Ошибка: ${data.message}`);
+    }
+  };
 
   return (
     <div className="flex flex-col items-center gap-4 mb-8">
-      <Image
-        src={user?.imageUrl}
-        width={120}
-        height={100}
-        alt="Аватар"
-        className="rounded-lg"
-      />
+      {loading ? (
+        <Loader />
+      ) : (
+        <form
+          className="flex flex-col gap-6 profile-form"
+          onSubmit={handleSubmit}
+        >
+          <div className="flex gap-2">
+            <input
+              type="text"
+              placeholder="Ім'я"
+              value={name}
+              onChange={(ev) => setName(ev.target.value)}
+              className="w-[200px] dark:bg-white dark:text-black/80"
+            />
+            <input
+              type="text"
+              placeholder="Прізвище"
+              value={surname}
+              onChange={(ev) => setSurname(ev.target.value)}
+              className="w-[200px] dark:bg-white dark:text-black/80"
+            />
+          </div>
 
-      <form
-        className="flex flex-col gap-2 profile-form"
-        // onSubmit={(ev) =>
-        //   onSave(ev, {
-        //     name: userName,
-        //     image,
-        //     phone,
-        //     admin,
-        //     city,
-        //     country,
-        //   })
-        // }
-      >
-        <input
-          type="text"
-          placeholder="Ім'я"
-          value={name}
-          onChange={(ev) => setName(ev.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Прізвище"
-          value={surname}
-          onChange={(ev) => setSurname(ev.target.value)}
-          className="w-[200px]"
-        />
+          <div className="flex gap-2">
+            <input
+              type="email"
+              disabled={true}
+              value={email}
+              placeholder={"Імейл"}
+              className={`${
+                email
+                  ? "pointer-events-none bg-gray-300 text-gray-400 dark:bg-gray-300 dark:text-gray-500"
+                  : "bg-white dark:text-black/80"
+              } w-[200px] dark:bg-white dark:text-black/80`}
+            />
 
-        <input
-          type="email"
-          disabled={true}
-          value={email}
-          placeholder={"Імейл"}
-        />
-        <div className="flex flex-col gap-2">
-          <div className="mb-2">
             <input
               type="tel"
               placeholder="Телефон"
               value={phone}
               onChange={(ev) => setPhone(ev.target.value)}
+              className="w-[200px] dark:bg-white dark:text-black/80"
             />
           </div>
-          <div className="mb-2">
+
+          <div className="flex gap-2">
             <input
               type="text"
               placeholder="Місто"
               value={city}
               onChange={(ev) => setCity(ev.target.value)}
+              className="w-[200px] dark:bg-white dark:text-black/80"
             />
-          </div>
-          <div className="mb-2">
+
             <input
               type="text"
               placeholder="Країна"
               value={country}
               onChange={(ev) => setCountry(ev.target.value)}
+              className="w-[200px] dark:bg-white dark:text-black/80"
             />
           </div>
-        </div>
-        {/* {loggedInUserData.admin && (
-          <div>
-            <label
-              className="p-2 inline-flex items-center gap-4 mb-2"
-              htmlFor="adminCb"
-            >
-              <input
-                id="adminCb"
-                type="checkbox"
-                className=""
-                value={"1"}
-                checked={admin}
-                onChange={(ev) => setAdmin(ev.target.checked)}
-              />
-              <span>Адмін</span>
-            </label>
-          </div>
-        )} */}
-        <button
-          type="submit"
-          className="button px-4 py-2 rounded-lg text-sm border border-gray-400/40"
-        >
-          Зберегти
-        </button>
-      </form>
+
+          <button
+            type="submit"
+            className="button px-4 py-2 rounded-lg text-sm border-2 border-gray-300"
+            disabled={isLoading}
+          >
+            {isLoading ? "Завантаження..." : "Зберегти"}
+          </button>
+        </form>
+      )}
     </div>
   );
 }

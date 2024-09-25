@@ -89,7 +89,7 @@ export function DataTable({ columns, data, onRowClick }) {
           size="md"
           onClick={() => table.previousPage()}
           disabled={!table.getCanPreviousPage()}
-          className="px-2"
+          className="px-3 py-2"
         >
           Попередня
         </Button>
@@ -98,7 +98,7 @@ export function DataTable({ columns, data, onRowClick }) {
           size="md"
           onClick={() => table.nextPage()}
           disabled={!table.getCanNextPage()}
-          className="px-2"
+          className="px-3 py-2"
         >
           Наступна
         </Button>

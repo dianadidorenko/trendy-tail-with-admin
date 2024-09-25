@@ -38,6 +38,7 @@
     "uploadthing": "^7.0.2"
   },
   "devDependencies": {
+    "@types/react": "18.3.9",
     "eslint": "^8",
     "eslint-config-next": "14.2.12",
     "postcss": "^8",

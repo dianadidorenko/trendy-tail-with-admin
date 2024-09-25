@@ -3,9 +3,9 @@
 import { useEffect, useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 
-import PagesCatalogNav from "@/components/layout/main-page/PagesCatalogNav";
 import { fetchItems } from "@/lib/fetchItems";
 import Loader from "@/components/elements/Loader";
+import PagesCatalogNav from "@/components/layout/main-page/PagesCatalogNav";
 
 const BedsPage = () => {
   const [items, setItems] = useState([]);

@@ -51,9 +51,9 @@ const CatalogPage = () => {
         ? item.season === selectedSeason
         : true;
       const matchesType = selectedType ? item.type === selectedType : true;
-      const matchesPrice =
-        item.sizes[0].price >= priceRange[0] &&
-        item.sizes[0].price <= priceRange[1];
+      const price = parseFloat(item.sizes[0].price);
+
+      const matchesPrice = price >= priceRange[0] && price <= priceRange[1];
 
       return (
         matchesBrand &&
@@ -79,8 +79,6 @@ const CatalogPage = () => {
     const endIndex = startIndex + ITEMS_PER_PAGE;
     return filteredItems.slice(startIndex, endIndex);
   }, [filteredItems, currentPage]);
-
-  // console.log(paginatedItems);
 
   const totalPages = Math.ceil(filteredItems.length / ITEMS_PER_PAGE);
 
@@ -129,7 +127,7 @@ const CatalogPage = () => {
     <section>
       <div className="container mx-auto">
         <PagesNav items={items} />
-
+        
         <CatalogSlider />
 
         <SectionHeaders mainHeader={"Каталог"} />

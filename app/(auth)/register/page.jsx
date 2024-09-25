@@ -44,11 +44,11 @@ function Signup() {
   };
 
   return (
-    <div className="flex justify-center items-center h-[100vh] bg-cyan-100">
+    <div className="flex justify-center items-center h-[100vh] bg-[#002255]">
       <div className="w-full max-w-md">
         <form
           onSubmit={handleSubmit}
-          className="bg-gray-100 dark:bg-gray-900 dark:text-gray-100 border-gradient rounded-lg shadow-2xl px-8 pt-6 pb-8 mb-4"
+          className="bg-gray-200 dark:bg-gray-900 dark:text-gray-100 border-gradient rounded-lg shadow-2xl px-8 pt-6 pb-8 mb-4"
         >
           <div className="mb-4">
             <label

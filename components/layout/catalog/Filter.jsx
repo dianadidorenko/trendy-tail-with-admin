@@ -43,8 +43,8 @@ const Filter = ({
     ...new Set(items.map((item) => item.brand).filter(Boolean)),
   ];
 
-  const minPrice = Math.min(...items.map((item) => item.startingPrice));
-  const maxPrice = Math.max(...items.map((item) => item.startingPrice));
+  const minPrice = Math.min(...items.map((item) => item.sizes[0].price));
+  const maxPrice = Math.max(...items.map((item) => item.sizes[0].price));
 
   const handlePriceClick = (range) => {
     onPriceRangeChange(range);
@@ -371,3 +371,14 @@ const Filter = ({
   );
 };
 export default Filter;
+
+{
+  /* <li
+  className={`cursor-pointer text-[13px] sm:text-[14px] filter-li hover:text-darkBlueColor ${
+    priceRange[0] === 2050 ? "bg-blue-100 rounded-sm text-accent" : ""
+  }`}
+  onClick={() => handlePriceClick([2001, maxPrice])}
+>
+  Вище 2001 грн
+</li>; */
+}

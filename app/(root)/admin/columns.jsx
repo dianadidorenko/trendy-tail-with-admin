@@ -88,7 +88,7 @@ export const columns = (handleDelete, isSmallScreen, isMiddleScreen) => {
         ) : null,
       cell: ({ row }) =>
         !isMiddleScreen ? (
-          <div className="flex items-center justify-center">
+          <div className="flex items-center justify-center flex-col gap-1">
             {row.original.sizes.map((sizeObj, index) => (
               <span key={index} className="mr-1">
                 {sizeObj.size}

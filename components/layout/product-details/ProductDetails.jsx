@@ -181,9 +181,9 @@ const ProductDetails = ({ item }) => {
             style={modalStyles}
             onRequestClose={closeModal}
             contentLabel="Catalog Modal"
-            className="bg-white dark:bg-accent outline-none p-2 absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] rounded-xl"
+            className="bg-white dark:bg-accent outline-none p-4 absolute top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] rounded-xl"
           >
-            <div className="min-w-[180px] border border-gray-800/40 px-4 py-2 md:px-6 rounded-[10px] flex flex-col items-center gap-2 md:gap-4 dark:text-white dark:border-white">
+            <div className="min-w-[180px] border border-gray-800/40 px-4 py-6 md:px-6 rounded-[10px] flex flex-col items-center gap-2 md:gap-4 dark:text-white dark:border-white">
               <h2 className="text-center text-[12px] max-w-[170px] md:text-[16px] md:max-w-[230px]">
                 ТОВАР УСПІШНО ДОДАНО ДО ВАШОГО КОШИКА
               </h2>

@@ -85,7 +85,7 @@ const MainForm = () => {
 
       <button
         type="submit"
-        className="rounded-md bg-darkBlueColor dark:bg-lightBlueColor text-white py-1 px-4 xs:text-[10px] sm:text-xs lg:text-sm mt-1"
+        className="rounded-md bg-darkBlueColor dark:bg-lightBlueColor text-white py-1 px-4 text-[14px] lg:text-sm mt-1"
       >
         Надіслати
       </button>

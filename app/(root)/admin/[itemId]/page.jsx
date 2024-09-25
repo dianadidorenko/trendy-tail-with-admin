@@ -377,7 +377,7 @@ export default function UpdateItemPage() {
               <button
                 type="button"
                 onClick={() => handleRemoveSize(index)}
-                className="hover:underline"
+                className="hover:underline border rounded-md p-2 border-slate-300"
               >
                 Видалити
               </button>
@@ -386,7 +386,7 @@ export default function UpdateItemPage() {
           <button
             type="button"
             onClick={handleAddSize}
-            className="hover:underline"
+            className="hover:underline border rounded-md p-2 border-slate-300 mt-2"
           >
             Додати розмір
           </button>
@@ -404,12 +404,12 @@ export default function UpdateItemPage() {
                 value={color}
                 onChange={(e) => handleArrayChange(index, e, "colors")}
                 placeholder={`Колір ${index + 1}`}
-                className="input-field dark:bg-slate-400 dark:text-slate-100"
+                className="input-field dark:bg-slate-400 dark:text-slate-100 w-full mb-2"
               />
               <button
                 type="button"
                 onClick={() => handleRemoveFromArray(index, "colors")}
-                className="hover:underline"
+                className="hover:underline border rounded-md p-2 border-slate-300"
               >
                 Видалити
               </button>
@@ -418,7 +418,7 @@ export default function UpdateItemPage() {
           <button
             type="button"
             onClick={() => handleAddToArray("colors")}
-            className="hover:underline mt-2"
+            className="hover:underline border rounded-md p-2 border-slate-300 mt-2"
           >
             Додати колір
           </button>
@@ -436,12 +436,12 @@ export default function UpdateItemPage() {
                 value={characteristic}
                 onChange={(e) => handleArrayChange(index, e, "characteristics")}
                 placeholder={`Характеристика ${index + 1}`}
-                className="input-field dark:bg-slate-400 dark:text-slate-100"
+                className="input-field dark:bg-slate-400 dark:text-slate-100 w-full"
               />
               <button
                 type="button"
                 onClick={() => handleRemoveFromArray(index, "characteristics")}
-                className="hover:underline"
+                className="hover:underline border rounded-md p-2 border-slate-300"
               >
                 Видалити
               </button>
@@ -450,7 +450,7 @@ export default function UpdateItemPage() {
           <button
             type="button"
             onClick={() => handleAddToArray("characteristics")}
-            className="hover:underline"
+            className="hover:underline border rounded-md p-2 border-slate-300 mt-2"
           >
             Додати характеристику
           </button>
@@ -470,12 +470,12 @@ export default function UpdateItemPage() {
                   handleArrayChange(index, e, "careInstructions")
                 }
                 placeholder={`Інструкція ${index + 1}`}
-                className="input-field dark:bg-slate-400 dark:text-slate-100"
+                className="input-field dark:bg-slate-400 dark:text-slate-100 w-full"
               />
               <button
                 type="button"
                 onClick={() => handleRemoveFromArray(index, "careInstructions")}
-                className="hover:underline"
+                className="hover:underline border rounded-md p-2 border-slate-300"
               >
                 Видалити
               </button>
@@ -484,7 +484,7 @@ export default function UpdateItemPage() {
           <button
             type="button"
             onClick={() => handleAddToArray("careInstructions")}
-            className="hover:underline"
+            className="hover:underline border rounded-md p-2 border-slate-300 mt-2"
           >
             Додати інструкцію
           </button>

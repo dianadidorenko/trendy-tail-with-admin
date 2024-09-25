@@ -43,7 +43,7 @@ const InTrendsSlider = ({ items }) => {
         >
           {items.slice(0, 6).map((item) => (
             <SwiperSlide className="px-2" key={item._id}>
-              <div className="max-w-[200px] max-h-[354px] text-center mx-auto flex flex-col items-center justify-center gap-2 border border-gray-300 shadow-md dark:border-white px-1 py-6 rounded-[20px] hover:shadow-xl hover:dark:shadow-slate-600 hover:cursor-pointer transition-all duration-300">
+              <div className="max-w-[240px] min-h-[380px] text-center mx-auto flex flex-col items-center justify-between gap-2 border border-gray-300 shadow-md dark:border-white px-1 py-6 rounded-[20px] hover:shadow-xl hover:dark:shadow-slate-600 hover:cursor-pointer transition-all duration-300">
                 <Image
                   src={item.images[0]}
                   width={180}

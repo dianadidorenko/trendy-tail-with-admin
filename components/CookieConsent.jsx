@@ -19,7 +19,7 @@ const CookieConsent = () => {
   return (
     <div
       style={styles.container}
-      className="bg-white dark:bg-slate-400 dark:text-white"
+      className="bg-white dark:bg-slate-400 dark:text-white dark:border-white"
     >
       <p className="pb-2">
         Цей сайт використовує кукі для покращення вашого досвіду. <br />{" "}
