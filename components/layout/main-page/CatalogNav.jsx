@@ -8,8 +8,9 @@ import SectionHeaders from "@/components/common/SectionHeaders";
 import { fadeIn } from "@/lib/variants";
 
 const CatalogNav = ({ items }) => {
-  const uniqueCategories = Array.from(
-    new Set(items.map((item) => item.categoryShow))
+  const uniqueCategories = items.filter(
+    (item, index, self) =>
+      index === self.findIndex((t) => t.categoryShow === item.categoryShow)
   );
 
   return (
@@ -34,11 +35,11 @@ const CatalogNav = ({ items }) => {
                 className="relative"
               >
                 <Image
-                  src={"/pages/main/catalog-nav/clothes.jpg"}
-                  width={280}
-                  height={167}
-                  alt="Одяг"
-                  className="xl:max-h-[168px] object-cover rounded-xl shadow-md dark:shadow-slate-100"
+                  src={`${item.images[0]}`}
+                  width={300}
+                  height={260}
+                  alt={item.categoryShow}
+                  className="object-cover rounded-xl shadow-md dark:shadow-slate-100"
                 />
                 <p className="absolute shadow-md text-[14px] text-white bg-primary/60 dark:shadow-slate-300 uppercase left-4 top-4 z-10 px-2 py-1 border border-white rounded-md">
                   {item.categoryShow}

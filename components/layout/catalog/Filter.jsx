@@ -9,7 +9,7 @@ const Filter = ({
   selectedCategory,
   selectedSeason = "",
   selectedType = "",
-  handleBrandClick,
+  handleBrandClick = () => {},
   handleCategoryClick = () => {},
   handleSeasonClick = () => {},
   handleTypeClick = () => {},
@@ -200,6 +200,16 @@ const Filter = ({
               Категорія:
             </h2>
             <ul className="grid grid-cols-1 gap-1 pt-3">
+              <li
+                className={`cursor-pointer text-[13px] sm:text-[14px] filter-li hover:text-darkBlueColor transition-all hover:dark:text-lightBlueColor ${
+                  selectedCategory === ""
+                    ? "bg-blue-100 rounded-sm text-accent"
+                    : ""
+                }`}
+                onClick={resetFilters}
+              >
+                Всі категорії
+              </li>
               {uniqueCategories.map((category) => (
                 <li
                   key={category}
@@ -220,6 +230,16 @@ const Filter = ({
               Бренд:
             </h2>
             <ul className="grid grid-cols-1 gap-1 pt-3">
+              <li
+                className={`cursor-pointer text-[13px] sm:text-[14px] filter-li hover:text-darkBlueColor transition-all hover:dark:text-lightBlueColor ${
+                  selectedCategory === ""
+                    ? "bg-blue-100 rounded-sm text-accent"
+                    : ""
+                }`}
+                onClick={resetFilters}
+              >
+                Всі бренди
+              </li>
               {uniqueBrands.map((brand) => (
                 <li
                   key={brand}
@@ -251,6 +271,16 @@ const Filter = ({
                     Сезон:
                   </h2>
                   <ul className="grid grid-cols-1 gap-1 pt-3">
+                    <li
+                      className={`cursor-pointer text-[13px] sm:text-[14px] filter-li hover:text-darkBlueColor transition-all hover:dark:text-lightBlueColor ${
+                        selectedCategory === ""
+                          ? "bg-blue-100 rounded-sm text-accent"
+                          : ""
+                      }`}
+                      onClick={resetFilters}
+                    >
+                      Всі сезони
+                    </li>
                     {uniqueSeasons.map((season) => (
                       <li
                         key={season}
@@ -274,6 +304,16 @@ const Filter = ({
                     Тип одягу:
                   </h2>
                   <ul className="grid grid-cols-1 gap-1 pt-3">
+                    <li
+                      className={`cursor-pointer text-[13px] sm:text-[14px] filter-li hover:text-darkBlueColor transition-all hover:dark:text-lightBlueColor ${
+                        selectedCategory === ""
+                          ? "bg-blue-100 rounded-sm text-accent"
+                          : ""
+                      }`}
+                      onClick={resetFilters}
+                    >
+                      Всі типи
+                    </li>
                     {uniqueClothType.map((type) => (
                       <li
                         key={type}
@@ -296,6 +336,18 @@ const Filter = ({
                   Ціна:
                 </h2>
                 <ul className="grid grid-cols-1 gap-1 pt-3">
+                  <li
+                    className={`cursor-pointer text-[13px] sm:text-[14px] filter-li hover:text-darkBlueColor transition-all hover:dark:text-lightBlueColor ${
+                      selectedCategory === ""
+                        ? "bg-blue-100 rounded-sm text-accent"
+                        : ""
+                    }`}
+                    onClick={() => {
+                      handlePriceClick([0, maxPrice]);
+                    }}
+                  >
+                    Всі ціни
+                  </li>
                   <li
                     className={`cursor-pointer text-[13px] sm:text-[14px] filter-li hover:text-darkBlueColor hover:dark:text-lightBlueColor ${
                       priceRange[1] === 500
