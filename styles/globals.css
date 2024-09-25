@@ -175,7 +175,6 @@ textarea {
 .catalogue-item {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
   column-gap: 56px;
   background: rgba(255, 255, 255, 0.2);
