@@ -4,6 +4,7 @@ import React, { useState, useEffect, useContext } from "react";
 import SearchInput from "./SearchInput";
 import ThemeToggler from "../ThemeToggler";
 import { CartContext } from "@/lib/context/CartContext";
+import { Button } from "../ui/button";
 
 const SettingsHeader = ({ containerStyles, linkStyles }) => {
   const { itemAmount } = useContext(CartContext);
@@ -41,12 +42,12 @@ const SettingsHeader = ({ containerStyles, linkStyles }) => {
     <div className={`${containerStyles}`}>
       {isSearchVisible && <SearchInput closeSearch={closeSearch} />}
 
-      <Link href={""} className={`${linkStyles}`} onClick={toggleSearch}>
+      <button href={""} className={`${linkStyles}`} onClick={toggleSearch}>
         <Search size={20} />
-      </Link>
-      <Link href={""} className={`${linkStyles}`}>
+      </button>
+      <button className={`${linkStyles}`}>
         <ThemeToggler />
-      </Link>
+      </button>
 
       {isLoggedIn ? (
         <Link href={"/profile"} className={`${linkStyles}`}>

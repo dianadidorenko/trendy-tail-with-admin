@@ -17,12 +17,13 @@ const FeedbackPage = () => {
   const [rating, setRating] = useState(0);
   const [feedbacks, setFeedbacks] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [averageRating, setAverageRating] = useState(0);
 
   const handleStarClick = (index) => {
     setRating(index + 1);
   };
 
-  const calculateAverageRating = () => {
+  const calculateAverageRating = (feedbacks) => {
     if (feedbacks.length === 0) return 0;
     const totalRating = feedbacks.reduce(
       (sum, feedback) => sum + feedback.rating,
@@ -51,10 +52,10 @@ const FeedbackPage = () => {
       .then((data) => {
         if (data.success) {
           toast.success("Ваш відгук був відправлений");
-          console.log("Feedback submitted successfully");
           setUserInfo("");
           setUserComment("");
-          setRating("");
+          setRating(0);
+          fetchFeedbacks(); // Обновляем список отзывов
         } else {
           toast.error("Ваш відгук не був відправлений");
           console.error("Error submitting feedback:", data.error);
@@ -69,6 +70,7 @@ const FeedbackPage = () => {
         if (data.success) {
           setFeedbacks(data.feedbacks);
           setLoading(false);
+          setAverageRating(calculateAverageRating(data.feedbacks));
           router.refresh();
         } else {
           console.error("Error fetching feedbacks:", data.error);
@@ -89,7 +91,7 @@ const FeedbackPage = () => {
               Відгуки <MessageSquareQuote size={30} />
             </h2>
             <span className="text-lg">
-              Загальна оцінка: {calculateAverageRating()}
+              Загальна оцінка: {loading ? <Loader /> : averageRating}
             </span>
           </div>
           {loading ? (
