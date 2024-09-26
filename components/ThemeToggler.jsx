@@ -25,6 +25,7 @@ const ThemeToggler = () => {
         size={20}
         className="absolute top-[37%] rotate-0 scale-0 transition-all dark:rotate-0 dark:scale-100"
       />
+      
     </p>
   );
 };
