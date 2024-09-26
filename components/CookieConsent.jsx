@@ -29,13 +29,13 @@ const CookieConsent = () => {
       <div className="flex gap-4 items-center justify-center">
         <button
           onClick={handleConsent}
-          className="border border-gray-400/40 rounded-xl p-2 hover:bg-gray-200 hover:dark:bg-gray-500 transition-all duration-300"
+          className="border border-gray-400/40 dark:border-white rounded-xl p-2 hover:bg-gray-200 hover:dark:bg-gray-500 transition-all duration-300"
         >
           Схвалити всі файли cookie
         </button>
         <button
           onClick={forbidConsent}
-          className="border border-gray-400/40 rounded-xl p-2 hover:bg-gray-200 hover:dark:bg-gray-500 transition-all duration-300"
+          className="border border-gray-400/40 dark:border-white rounded-xl p-2 hover:bg-gray-200 hover:dark:bg-gray-500 transition-all duration-300"
         >
           Не даю згоду
         </button>
