@@ -51,9 +51,9 @@ export default function ProfilePage() {
       if (userEmail) {
         try {
           const response = await axios.get("/api/orders", {
-            params: { email: userEmail }, 
+            params: { email: userEmail },
           });
-          setOrders(response.data); 
+          setOrders(response.data);
         } catch (error) {
           console.error("Ошибка при загрузке заказов:", error);
         }
@@ -96,7 +96,9 @@ export default function ProfilePage() {
 
               <div className="m-10 flex flex-col items-center gap-10">
                 <h2 className="text-2xl font-bold mb-6">
-                  Мої замовлення: {orders.length}
+                  {isAdmin
+                    ? `Усього замовлень: ${orders.length}`
+                    : `Мої замовлення: ${orders.length}`}
                 </h2>
                 {orders.length > 0 ? (
                   <ul className="space-y-4 dark:text-black/50">

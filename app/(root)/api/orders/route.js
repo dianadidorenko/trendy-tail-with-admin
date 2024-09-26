@@ -18,6 +18,25 @@ export async function POST(req) {
   }
 }
 
+// export async function GET(req) {
+//   await db.connect();
+
+//   const { searchParams } = new URL(req.url);
+//   const email = searchParams.get("email");
+
+//   try {
+//     const orders = await Order.find({ "client.email": email });
+//     return new Response(JSON.stringify(orders), { status: 200 });
+//   } catch (error) {
+//     console.error("Error fetching orders:", error);
+//     return new Response(JSON.stringify({ error: error.message }), {
+//       status: 500,
+//     });
+//   } finally {
+//     await db.disconnect();
+//   }
+// }
+
 export async function GET(req) {
   await db.connect();
 
@@ -25,8 +44,15 @@ export async function GET(req) {
   const email = searchParams.get("email");
 
   try {
-    const orders = await Order.find({ "client.email": email });
-    return new Response(JSON.stringify(orders), { status: 200 });
+    // Проверяем, является ли email администратора
+    if (email === "diana.didorenko@ukr.net") {
+      // Замените на фактический email администратора
+      const orders = await Order.find({});
+      return new Response(JSON.stringify(orders), { status: 200 });
+    } else {
+      const orders = await Order.find({ "client.email": email });
+      return new Response(JSON.stringify(orders), { status: 200 });
+    }
   } catch (error) {
     console.error("Error fetching orders:", error);
     return new Response(JSON.stringify({ error: error.message }), {
