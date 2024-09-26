@@ -35,13 +35,17 @@ const CartItem = () => {
   const [selectedCity, setSelectedCity] = useState("");
   const [selectedWarehouse, setSelectedWarehouse] = useState("");
 
-  const apiKey = "6c4bdf6606f029fdcda5699c4fde13d9";
-  const apiUrl = "https://api.novaposhta.ua/v2.0/json/";
-
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
+
+  useEffect(() => {
+    const storedEmail = localStorage.getItem("userEmail");
+    if (storedEmail) {
+      setEmail(storedEmail);
+    }
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -107,11 +111,14 @@ const CartItem = () => {
     setLoading(true);
     const fetchRegions = async () => {
       try {
-        const response = await axios.post(apiUrl, {
-          apiKey: apiKey,
-          modelName: "Address",
-          calledMethod: "getAreas",
-        });
+        const response = await axios.post(
+          `${process.env.NEXT_PUBLIC_API_URL}`,
+          {
+            apiKey: process.env.NEXT_PUBLIC_API_KEY,
+            modelName: "Address",
+            calledMethod: "getAreas",
+          }
+        );
         setRegions(response.data.data);
       } catch (error) {
         console.error("Error fetching regions:", error);
@@ -126,8 +133,8 @@ const CartItem = () => {
   const handleRegionChange = async (region) => {
     setSelectedRegion(region.Ref);
     try {
-      const response = await axios.post(apiUrl, {
-        apiKey: apiKey,
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}`, {
+        apiKey: process.env.NEXT_PUBLIC_API_KEY,
         modelName: "Address",
         calledMethod: "getCities",
         methodProperties: {
@@ -145,8 +152,8 @@ const CartItem = () => {
   const handleCityChange = async (city) => {
     setSelectedCity(city.Ref);
     try {
-      const response = await axios.post(apiUrl, {
-        apiKey: apiKey,
+      const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}`, {
+        apiKey: process.env.NEXT_PUBLIC_API_KEY,
         modelName: "AddressGeneral",
         calledMethod: "getWarehouses",
         methodProperties: {
@@ -183,6 +190,43 @@ const CartItem = () => {
   const chosenWarehouse = warehouses.find(
     (warehouse) => warehouse.Ref === selectedWarehouse
   )?.Description;
+
+  const handleSubmitOrder = async () => {
+    setLoading(true);
+    try {
+      const clientData = {
+        name,
+        surname,
+        phone,
+        email,
+        region: chosenRegion,
+        city: chosenCity,
+        warehouse: chosenWarehouse,
+      };
+
+      const orderData = {
+        client: clientData,
+        items: cart.map((item) => ({
+          name: item.name,
+          size: item.size,
+          amount: item.amount,
+          price: item.price,
+          image: item.image,
+        })),
+        total: cartTotal,
+      };
+
+      const createdOrder = await axios.post("/api/orders", orderData);
+
+      clearCart();
+      toast.success("Заказ оформлен!");
+    } catch (error) {
+      console.error("Ошибка при создании заказа:", error);
+      toast.error("Ошибка при создании заказа.");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   if (loading) {
     return <Loader />;
@@ -247,7 +291,14 @@ const CartItem = () => {
           <h2 className="uppercase border-b-gray-400 border-b-2 pb-1 text-primary dark:text-white/80">
             Ваші дані
           </h2>
-          <form className="cart-form my-4" onSubmit={handleSubmit}>
+          <form
+            className="cart-form my-4"
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleSubmit(e);
+              handleSubmitOrder();
+            }}
+          >
             <div className="info-user-block">
               <input type="hidden" name="formType" value="form2" />
               <input
@@ -255,7 +306,7 @@ const CartItem = () => {
                 placeholder="Ім'я"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
-                className="bg-white border border-gray-300 p-2 rounded-md placeholder:text-primary text-primary placeholder:text-[14px]"
+                className="bg-white border border-gray-300 p-2 rounded-md placeholder:text-primary/50 text-primary placeholder:text-[14px]"
                 required
               />
               <input
@@ -263,16 +314,16 @@ const CartItem = () => {
                 placeholder="Прізвище"
                 value={surname}
                 onChange={(e) => setSurname(e.target.value)}
-                className="bg-white border border-gray-300 p-2 rounded-md placeholder:text-primary text-primary placeholder:dark:text-primary placeholder:text-[14px]"
+                className="bg-white border border-gray-300 p-2 rounded-md placeholder:text-primary/50 text-primary placeholder:dark:text-primary/50 placeholder:text-[14px]"
                 required
               />
               <input
                 type="text"
-                placeholder="+38 (0__) ___-__-__"
+                placeholder="+380__-___-__-__"
                 value={phone}
                 name="phone"
                 onChange={(e) => setPhone(e.target.value)}
-                className="bg-white border border-gray-300 p-2 rounded-md placeholder:text-primary text-primary placeholder:text-[14px]"
+                className="bg-white border border-gray-300 p-2 rounded-md placeholder:text-primary/50 text-primary placeholder:text-[14px]"
                 required
               />
               <input
@@ -281,7 +332,7 @@ const CartItem = () => {
                 value={email}
                 name="email"
                 onChange={(e) => setEmail(e.target.value)}
-                className="bg-white border border-gray-300 p-2 rounded-md placeholder:text-primary text-primary placeholder:text-[14px]"
+                className="pointer-events-none cursor-not-allowed dark:bg-white/50 border border-gray-300 p-2 rounded-md placeholder:text-primary text-primary placeholder:text-[14px]"
                 required
               />
             </div>
@@ -407,40 +458,37 @@ const CartItem = () => {
               />
 
               <div>
-                <div>
-                  <div className="text-[15px] flex flex-col gap-2">
-                    <p className="font-bold">{cartItem.name}</p>
-                    <p className="italic">
-                      Розмір: <span>{cartItem.size}</span>
-                    </p>
+                <div className="text-[15px] flex flex-col gap-2">
+                  <p className="font-bold">{cartItem.name}</p>
+                  <p className="italic">
+                    Розмір: <span>{cartItem.size}</span>
+                  </p>
 
-                    <div className="flex flex-col items-center gap-2">
-                      <p>Кількість: </p>
-                      <div className="flex gap-2">
-                        <MinusCircle
-                          size={18}
-                          className="hover:text-orange-400 transition cursor-pointer"
-                          onClick={() =>
-                            decreaseAmount(cartItem.id, cartItem.price)
-                          }
-                        />
-                        <p>{cartItem.amount}</p>
-                        <PlusCircle
-                          size={18}
-                          className="hover:text-orange-400 transition cursor-pointer"
-                          onClick={() =>
-                            increaseAmount(cartItem.id, cartItem.price)
-                          }
-                        />
-                      </div>
+                  <div className="flex flex-col items-center gap-2">
+                    <p>Кількість: </p>
+                    <div className="flex gap-2">
+                      <MinusCircle
+                        size={18}
+                        className="hover:text-orange-400 transition cursor-pointer"
+                        onClick={() =>
+                          decreaseAmount(cartItem.id, cartItem.price)
+                        }
+                      />
+                      <p>{cartItem.amount}</p>
+                      <PlusCircle
+                        size={18}
+                        className="hover:text-orange-400 transition cursor-pointer"
+                        onClick={() =>
+                          increaseAmount(cartItem.id, cartItem.price)
+                        }
+                      />
                     </div>
-
-                    <p className="font-semibold">
-                      Ціна:{" "}
-                      <span className="text-[15px]">{cartItem.price} </span>
-                      <span className="text-[13px]">₴</span>
-                    </p>
                   </div>
+
+                  <p className="font-semibold">
+                    Ціна: <span className="text-[15px]">{cartItem.price} </span>
+                    <span className="text-[13px]">₴</span>
+                  </p>
                 </div>
               </div>
             </div>
