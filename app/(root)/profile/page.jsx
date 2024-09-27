@@ -105,7 +105,7 @@ export default function ProfilePage() {
                     {orders.map((order) => (
                       <li
                         key={order._id}
-                        className="p-2 sm:p-4 border rounded-md shadow-md dark:bg-[#adadad] text-gray-100 dark:text-gray-600 hover:shadow-lg transition-shadow"
+                        className="p-2 sm:p-4 border rounded-md shadow-md dark:bg-[#adadad] text-primary dark:text-gray-600 hover:shadow-lg transition-shadow"
                       >
                         <div className="flex flex-col gap-4">
                           <div className="flex gap-2 flex-col sm:flex-row justify-between">
