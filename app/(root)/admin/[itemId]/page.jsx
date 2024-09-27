@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { UploadButton } from "@/utils/uploadthing";
 import Loader from "@/components/elements/Loader";
+import Link from "next/link";
+import { ArrowLeft } from "lucide-react";
 
 export default function UpdateItemPage() {
   const router = useRouter();
@@ -161,6 +163,14 @@ export default function UpdateItemPage() {
 
   return (
     <div className="form-container mx-auto p-4 my-8 max-w-[600px] lg:max-w-[800px] text-black dark:text-white bg-white dark:bg-slate-600">
+      <Link
+        href={"/admin"}
+        className="flex gap-2 text-white p-1 rounded-lg mb-6"
+      >
+        <ArrowLeft />
+        Назад
+      </Link>
+      
       <h1 className="text-2xl font-bold mb-10 text-center">
         Панель адміністратора
       </h1>

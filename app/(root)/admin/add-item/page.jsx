@@ -5,6 +5,8 @@ import { useState } from "react";
 
 import { UploadButton } from "@/utils/uploadthing";
 import { useRouter } from "next/navigation";
+import { ArrowLeft } from "lucide-react";
+import Link from "next/link";
 
 const initialItemState = {
   name: "",
@@ -143,6 +145,14 @@ export default function AddItemPage() {
 
   return (
     <div className="form-container mx-auto my-8 p-4 max-w-[600px] lg:max-w-[800px] text-black dark:text-white bg-white dark:bg-slate-600">
+      <Link
+        href={"/admin"}
+        className="flex gap-2 text-white p-1 rounded-lg mb-6"
+      >
+        <ArrowLeft />
+        Назад
+      </Link>
+
       <h1 className="text-2xl font-bold mb-10 text-center">
         Панель адміністратора
       </h1>
