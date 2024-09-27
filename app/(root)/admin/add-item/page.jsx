@@ -142,7 +142,7 @@ export default function AddItemPage() {
   };
 
   return (
-    <div className="form-container mx-auto p-4 max-w-[600px] lg:max-w-[800px] text-black dark:text-white bg-white dark:bg-slate-700">
+    <div className="form-container mx-auto my-8 p-4 max-w-[600px] lg:max-w-[800px] text-black dark:text-white bg-white dark:bg-slate-600">
       <h1 className="text-2xl font-bold mb-10 text-center">
         Панель адміністратора
       </h1>

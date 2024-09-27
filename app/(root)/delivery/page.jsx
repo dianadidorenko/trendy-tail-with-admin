@@ -8,7 +8,7 @@ const DeliverySection = () => {
     <section className="container mx-auto">
       <PagesNav />
 
-      <div className="max-w-[900px] mx-auto">
+      <div className="max-w-[700px] mx-auto">
         <SectionHeaders mainHeader={"Доставка"} />
 
         <div className="delivery-block border-[#ffa95c] border-[3px] rounded-3xl overflow-hidden">
@@ -61,11 +61,11 @@ const DeliverySection = () => {
 
 const PaymentSection = () => {
   return (
-    <section className="page__payment payment">
-      <div className="payment__container">
+    <section className="container mx-auto">
+      <div className="max-w-[700px] mx-auto mb-10">
         <SectionHeaders mainHeader={"Оплата"} />
 
-        <div className="payment-block">
+        <div className="payment-block border-[#ffa95c] border-[3px] rounded-3xl overflow-hidden">
           <p
             style={{
               borderTop: "3px solid #ffa95c",
