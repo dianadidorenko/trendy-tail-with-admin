@@ -7,6 +7,7 @@ import Link from "next/link";
 
 import Loader from "@/components/elements/Loader";
 import UserForm from "@/components/layout/profile/UserForm";
+import { Pencil } from "lucide-react";
 
 export default function ProfilePage() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -15,7 +16,7 @@ export default function ProfilePage() {
   const [loading, setLoading] = useState(true);
   const [orders, setOrders] = useState([]);
 
-  orders.map((order) => console.log(order));
+  // orders.map((order) => console.log(order));
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -107,16 +108,29 @@ export default function ProfilePage() {
                         key={order._id}
                         className="p-2 sm:p-4 border rounded-md shadow-md dark:bg-[#d8d8d8] text-primary dark:text-gray-600 hover:shadow-lg transition-shadow"
                       >
+                        {isAdmin && (
+                          <h1 className="mb-4 font-extrabold flex items-center gap-1">
+                             ID замовлення:{" "}
+                            <Link
+                              href={`/profile/${order._id}`}
+                              className="underline hover:text-orangeColor duration-300 flex gap-2 items-center"
+                            >
+                              {order._id}
+                              <Pencil size={18} />
+                            </Link>
+                          </h1>
+                        )}
                         <div className="flex flex-col gap-4">
                           <div className="flex gap-2 flex-col sm:flex-row justify-between">
                             <p className="font-semibold">
                               Замовлення вiд:{" "}
                               {new Date(order.createdAt).toLocaleDateString()}
                             </p>
+
                             <p className="font-semibold">
                               Статус:{" "}
                               <span className="text-green-700">
-                                {order.status === "pending" ? "в обробцi" : ""}
+                                {order.status === "pending" ? "в обробці" : ""}
                                 {order.status ===
                                 "в процесі підготовки до відправлення"
                                   ? "в процесі підготовки до відправлення"
