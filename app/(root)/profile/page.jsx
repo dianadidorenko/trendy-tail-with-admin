@@ -105,7 +105,7 @@ export default function ProfilePage() {
                     {orders.map((order) => (
                       <li
                         key={order._id}
-                        className="p-2 sm:p-4 border rounded-md shadow-md dark:bg-[#adadad] text-primary dark:text-gray-600 hover:shadow-lg transition-shadow"
+                        className="p-2 sm:p-4 border rounded-md shadow-md dark:bg-[#d8d8d8] text-primary dark:text-gray-600 hover:shadow-lg transition-shadow"
                       >
                         <div className="flex flex-col gap-4">
                           <div className="flex gap-2 flex-col sm:flex-row justify-between">
@@ -146,7 +146,7 @@ export default function ProfilePage() {
                                 key={item._id}
                                 className="flex justify-between flex-col"
                               >
-                                <div className="flex flex-col items-center gap-1 border border-gray-300 p-2 sm:flex-row sm:gap-4">
+                                <div className="flex flex-col items-center gap-1 border border-gray-400 p-2 sm:flex-row sm:gap-4">
                                   <Image
                                     src={item.image}
                                     width={80}
