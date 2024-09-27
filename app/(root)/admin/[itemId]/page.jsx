@@ -313,14 +313,34 @@ export default function UpdateItemPage() {
             <UploadButton
               endpoint="imageUploader"
               appearance={{
-                button:
-                  "ut-uploading:cursor-not-allowed w-full bg-orange-400 text-black after:bg-orange-500 py-2 rounded-[10px]",
-                allowedContent: "hidden",
+                button({ ready, isUploading }) {
+                  return {
+                    color: "black",
+                    ...(ready && { color: "#ecfdf5" }),
+                    ...(isUploading && { color: "#d1d5db" }),
+                  };
+                },
+                container: "flex-row rounded-md border-cyan-300 bg-slate-800",
+                allowedContent:
+                  "flex h-8 flex-col items-center justify-center px-2 text-white",
+              }}
+              content={{
+                button({ ready }) {
+                  if (ready) return <span></span>;
+                  return "В процесі...";
+                },
+                allowedContent({ ready, fileTypes, isUploading }) {
+                  if (!ready) return "Перевіряємо файли";
+                  if (isUploading) return "У процесі завантаження";
+                  return `Файли, які ви можете додавати: ${fileTypes.join(
+                    ", "
+                  )}`;
+                },
               }}
               onClientUploadComplete={(res) => {
                 const newImages = res.map((e) => e.url);
                 setImages(newImages);
-                setExistingItem((prev) => ({
+                setItem((prev) => ({
                   ...prev,
                   images: newImages,
                 }));

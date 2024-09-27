@@ -107,19 +107,6 @@ textarea {
   padding: 10px 10px 150px 10px;
 }
 
-#inputName {
-  color: var(--primary-color);
-  font-size: 18px;
-  font-weight: 600;
-}
-
-#comment {
-  color: var(--background-color);
-  font-size: 18px;
-  font-weight: 400;
-  line-height: 108%; /* 32.4px */
-}
-
 .comment {
   display: -webkit-box;
   display: -ms-flexbox;

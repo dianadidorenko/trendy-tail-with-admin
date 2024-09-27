@@ -80,10 +80,10 @@ export default function UserForm({ email }) {
         <Loader />
       ) : (
         <form
-          className="flex flex-col gap-6 profile-form"
+          className="flex flex-col gap-2 sm:gap-6 profile-form"
           onSubmit={handleSubmit}
         >
-          <div className="flex gap-2">
+          <div className="flex flex-col sm:flex-row gap-2">
             <input
               type="text"
               placeholder="Ім'я"
@@ -100,7 +100,7 @@ export default function UserForm({ email }) {
             />
           </div>
 
-          <div className="flex gap-2">
+          <div className="flex flex-col sm:flex-row gap-2">
             <input
               type="email"
               disabled={true}
@@ -122,7 +122,7 @@ export default function UserForm({ email }) {
             />
           </div>
 
-          <div className="flex gap-2">
+          <div className="flex flex-col sm:flex-row gap-2">
             <input
               type="text"
               placeholder="Місто"

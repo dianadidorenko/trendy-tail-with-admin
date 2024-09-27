@@ -94,8 +94,8 @@ export default function ProfilePage() {
               </div>
               <UserForm email={userEmail} />
 
-              <div className="m-10 flex flex-col items-center gap-10">
-                <h2 className="text-2xl font-bold mb-6">
+              <div className="m-10 flex flex-col w-full gap-10">
+                <h2 className="text-2xl font-bold mb-6 text-center">
                   {isAdmin
                     ? `Усього замовлень: ${orders.length}`
                     : `Мої замовлення: ${orders.length}`}
@@ -105,10 +105,10 @@ export default function ProfilePage() {
                     {orders.map((order) => (
                       <li
                         key={order._id}
-                        className="p-4 border rounded-md shadow-md dark:bg-[#adadad] text-gray-100 dark:text-gray-600 hover:shadow-lg transition-shadow"
+                        className="p-2 sm:p-4 border rounded-md shadow-md dark:bg-[#adadad] text-gray-100 dark:text-gray-600 hover:shadow-lg transition-shadow"
                       >
                         <div className="flex flex-col gap-4">
-                          <div className="flex justify-between">
+                          <div className="flex gap-2 flex-col sm:flex-row justify-between">
                             <p className="font-semibold">
                               Замовлення вiд:{" "}
                               {new Date(order.createdAt).toLocaleDateString()}
@@ -146,7 +146,7 @@ export default function ProfilePage() {
                                 key={item._id}
                                 className="flex justify-between flex-col"
                               >
-                                <div className="flex items-center gap-4 border border-gray-300 p-2">
+                                <div className="flex flex-col items-center gap-1 border border-gray-300 p-2 sm:flex-row sm:gap-4">
                                   <Image
                                     src={item.image}
                                     width={80}

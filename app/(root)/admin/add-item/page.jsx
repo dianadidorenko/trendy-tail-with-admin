@@ -285,9 +285,22 @@ export default function AddItemPage() {
             <UploadButton
               endpoint="imageUploader"
               appearance={{
-                button:
-                  "ut-uploading:cursor-not-allowed w-full bg-orange-400 text-black after:bg-orange-500 py-2 rounded-[10px]",
-                allowedContent: "hidden",
+                container:
+                  "h-[100px] flex flex-col items-center justify-center rounded-md border-cyan-300 bg-slate-800",
+                allowedContent:
+                  "flex h-8 flex-col items-center justify-center px-2 text-white text-center",
+              }}
+              content={{
+                button() {
+                  return <span></span>;
+                },
+                allowedContent({ ready, fileTypes, isUploading }) {
+                  if (!ready) return "Перевіряємо файли";
+                  if (isUploading) return "У процесі завантаження";
+                  return `Файли, які ви можете додавати: ${fileTypes.join(
+                    ", "
+                  )}`;
+                },
               }}
               onClientUploadComplete={(res) => {
                 const newImages = res.map((e) => e.url);
@@ -329,14 +342,17 @@ export default function AddItemPage() {
             Розміри
           </h2>
           {(item.sizes ?? []).map((size, index) => (
-            <div key={index} className="flex items-center mb-2 gap-4">
+            <div
+              key={index}
+              className="flex flex-col sm:flex-row items-start sm:items-center mb-2 gap-4"
+            >
               <input
                 type="text"
                 name="size"
                 value={size.size}
                 onChange={(e) => handleSizeChange(index, e)}
                 placeholder={`Розмір ${index + 1}`}
-                className="input-field dark:bg-slate-400 dark:text-slate-100 dark:placeholder:text-slate-100"
+                className="dark:bg-slate-400 dark:text-slate-100 dark:placeholder:text-slate-100 w-full"
               />
               <input
                 type="text"
@@ -344,12 +360,12 @@ export default function AddItemPage() {
                 value={size.price}
                 onChange={(e) => handleSizeChange(index, e)}
                 placeholder={`Ціна ${index + 1}`}
-                className="input-field dark:bg-slate-400 dark:text-slate-100 dark:placeholder:text-slate-100"
+                className="dark:bg-slate-400 dark:text-slate-100 dark:placeholder:text-slate-100 w-full"
               />
               <button
                 type="button"
                 onClick={() => handleRemoveSize(index)}
-                className="hover:underline"
+                className="hover:underline border rounded-md p-2 border-slate-300"
               >
                 Видалити
               </button>
@@ -358,7 +374,7 @@ export default function AddItemPage() {
           <button
             type="button"
             onClick={handleAddSize}
-            className="hover:underline"
+            className="hover:underline border rounded-md p-2 border-slate-300"
           >
             Додати розмір
           </button>
@@ -381,7 +397,7 @@ export default function AddItemPage() {
               <button
                 type="button"
                 onClick={() => handleRemoveFromArray(index, "colors")}
-                className="hover:underline"
+                className="hover:underline border rounded-md p-2 border-slate-300"
               >
                 Видалити
               </button>
@@ -390,7 +406,7 @@ export default function AddItemPage() {
           <button
             type="button"
             onClick={() => handleAddToArray("colors")}
-            className="hover:underline mt-2"
+            className="hover:underline border rounded-md p-2 border-slate-300 mt-2"
           >
             Додати колір
           </button>
@@ -413,7 +429,7 @@ export default function AddItemPage() {
               <button
                 type="button"
                 onClick={() => handleRemoveFromArray(index, "characteristics")}
-                className="hover:underline"
+                className="hover:underline border rounded-md p-2 border-slate-300"
               >
                 Видалити
               </button>
@@ -422,7 +438,7 @@ export default function AddItemPage() {
           <button
             type="button"
             onClick={() => handleAddToArray("characteristics")}
-            className="hover:underline"
+            className="hover:underline border rounded-md p-2 border-slate-300"
           >
             Додати характеристику
           </button>
@@ -447,7 +463,7 @@ export default function AddItemPage() {
               <button
                 type="button"
                 onClick={() => handleRemoveFromArray(index, "careInstructions")}
-                className="hover:underline"
+                className="hover:underline border rounded-md p-2 border-slate-300"
               >
                 Видалити
               </button>
@@ -456,7 +472,7 @@ export default function AddItemPage() {
           <button
             type="button"
             onClick={() => handleAddToArray("careInstructions")}
-            className="hover:underline"
+            className="hover:underline border rounded-md p-2 border-slate-300"
           >
             Додати інструкцію
           </button>
