@@ -12,13 +12,18 @@ const links = [
   { path: "/feedback", name: "Відгуки" },
 ];
 
-const Nav = ({ containerStyles, linkStyles, underlineStyles }) => {
+const Nav = ({ containerStyles, linkStyles, underlineStyles, onLinkClick }) => {
   const path = usePathname();
 
   return (
     <nav className={`${containerStyles}`}>
       {links.map((link, index) => (
-        <Link href={link.path} key={index} className={`${linkStyles}`}>
+        <Link
+          href={link.path}
+          key={index}
+          className={`${linkStyles}`}
+          onClick={onLinkClick}
+        >
           {link.path === path && (
             <motion.span
               initial={{ y: "-100%" }}

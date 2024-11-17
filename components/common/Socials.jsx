@@ -18,11 +18,11 @@ const icons = [
     name: <RiInstagramFill />,
   },
 ];
-const Socials = ({ containerStyles, iconStyles }) => {
+const Socials = ({ containerStyles, iconStyles, onLinkClick }) => {
   return (
     <div className={`${containerStyles}`}>
       {icons.map((icon, index) => (
-        <Link href={icon.path} key={index}>
+        <Link href={icon.path} key={index} onClick={onLinkClick}>
           <div className={`${iconStyles}`}>{icon.name}</div>
         </Link>
       ))}

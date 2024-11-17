@@ -1,22 +1,29 @@
 import { AlignJustify } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
+import { useState } from "react";
 
 import Nav from "./Nav";
 import { Sheet, SheetTrigger, SheetContent } from "../ui/sheet";
 import Socials from "./Socials";
 
 const MobileNav = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const handleClose = () => {
+    setIsOpen(false);
+  };
+
   return (
     <div className="md:hidden">
-      <Sheet>
+      <Sheet open={isOpen} onOpenChange={setIsOpen}>
         <SheetTrigger asChild>
           <AlignJustify className="hover:text-orangeColor hover:dark:text-darkBlueColor transition-all cursor-pointer " />
         </SheetTrigger>
         <SheetContent>
           <div className="flex flex-col items-center justify-between h-full overflow-auto dark:bg-[#242d3a]">
             <div className="flex flex-col items-center gap-y-20">
-              <Link href={"/"}>
+              <Link href={"/"} onClick={handleClose}>
                 <Image
                   src={"/logo.svg"}
                   alt="Лого"
@@ -31,6 +38,7 @@ const MobileNav = () => {
                 linkStyles={
                   "text-lg hover:text-orangeColor hover:dark:text-darkBlueColor transition-all"
                 }
+                onLinkClick={handleClose}
               />
             </div>
 
@@ -39,6 +47,7 @@ const MobileNav = () => {
               iconStyles={
                 "text-2xl hover:text-orangeColor hover:dark:text-darkBlueColor transition-all cursor-pointer"
               }
+              onLinkClick={handleClose}
             />
           </div>
         </SheetContent>
